@@ -5,18 +5,32 @@
             <p>Get in touch using this form, or send me an email at sarahriazati@gmail.com.</p>
         </div>
         <div class="form-wrapper">
-            <form action="">
-                <label for="name">Your name</label>
-                <input name="name" type="name">
-                <label for="email">Your email</label>
-                <input name="email" type="email">
-                <label for="message">Your message</label>
-                <textarea name="message" rows="10"></textarea>
-                <input type="submit">
+            <form id="subscribe" name="subscribe" method="post" netlify netlify-honeypot="bot-field" data-netlify="true"
+                @submit.prevent="onFormSubmit">
+                <input type="hidden" name="form-name" value="subscribe">
+                <input type="email" name="email" required>
+                <button>Submit</button>
             </form>
+            <div v-if="showThanks">
+                Thanks!
+            </div>
         </div>
     </div>
 </template>
+<script setup>
+const showThanks = ref(false)
+const onFormSubmit = (e) => {
+    let myForm = document.getElementById("subscribe");
+    let formData = new FormData(myForm);
+    fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData).toString(),
+    })
+        .then(result => showThanks.value = true)
+        .catch((error) => console.log(error));
+}
+</script>
 
 <style lang="scss" scoped>
 .text-wrapper {
