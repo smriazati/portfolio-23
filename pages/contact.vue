@@ -5,20 +5,31 @@
             <p>Get in touch using this form, or send me an email at sarahriazati@gmail.com.</p>
         </div>
         <div class="form-wrapper">
-            <form id="subscribe" name="subscribe" method="post" netlify netlify-honeypot="bot-field" data-netlify="true"
-                @submit.prevent="onFormSubmit">
-                <input type="hidden" name="form-name" value="subscribe">
-                <input type="email" name="email" required>
-                <button>Submit</button>
-            </form>
-            <div v-if="showThanks">
-                Thanks!
+            <div v-if="!showThanks">
+                <form id="contact" name="contact" method="post" netlify netlify-honeypot="bot-field" data-netlify="true"
+                    @submit.prevent="onFormSubmit">
+                    <input type="hidden" name="form-name" value="contact">
+                    <label for="name">Name *</label>
+                    <input type="text" name="name" required>
+                    <label for="email">Email *</label>
+                    <input type="email" name="email" required>
+                    <label for="message">Message *</label>
+                    <textarea name="message"></textarea>
+                    <button class="btn-fill">Submit</button>
+                </form>
+            </div>
+            <div v-else class="confirmation-wrapper">
+                <p>Thanks for reaching out! Your message has been submitted.</p>
+                <button class="btn-fill" @click="toggleShowThanks">Send another message</button>
             </div>
         </div>
     </div>
 </template>
 <script setup>
 const showThanks = ref(false)
+const toggleShowThanks = () => {
+    showThanks.value = !showThanks.value;
+}
 const onFormSubmit = (e) => {
     let myForm = document.getElementById("subscribe");
     let formData = new FormData(myForm);
@@ -37,11 +48,22 @@ const onFormSubmit = (e) => {
     padding: $spacer*2;
 }
 
+.form-wrapper {
+    padding: $spacer*2;
+
+}
+
+.confirmation-wrapper {
+    button {
+        margin-top: $spacer*2;
+    }
+}
+
+
 form {
     display: flex;
     flex-direction: column;
     max-width: 80ch;
-    padding: $spacer*2;
 
     label {
         margin-bottom: $spacer;
