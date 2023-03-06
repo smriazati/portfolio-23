@@ -1,0 +1,169 @@
+@use '_vars' as *;
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 18px;
+
+    @media (max-width: $text-collapse-bp) {
+        font-size: 14px;
+    }
+}
+
+body {
+    @include typeSansSerif();
+}
+
+img {
+    max-width: 100%;
+}
+
+a,
+a:visited {
+    text-decoration: none;
+    color: #000;
+}
+
+nav ul {
+    list-style: none;
+}
+
+button {
+    outline: none;
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    background: transparent;
+}
+
+
+input[type="submit"],
+button:hover {
+    cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-size: 1rem;
+    @include typeSansSerif();
+}
+
+p,
+ul,
+a {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.text-display-style {
+    @include textDisplayStyle();
+}
+
+.text-display-sm-style {
+    @include textDisplaySmStyle();
+}
+
+.rte-wrapper p+p,
+.rte-wrapper p+ul,
+.rte-wrapper ul+ul {
+    margin-top: $spacer;
+}
+
+.rte-wrapper ul {
+    padding-left: $spacer;
+}
+
+em {
+    font-size: 1.3rem;
+    font-style: normal;
+}
+
+/* layout */
+
+.row {
+    display: flex;
+
+    &.row-wrap {
+        flex-wrap: wrap;
+    }
+
+    @media (max-width: $collapse-bp) {
+        &:not(.no-break) {
+            flex-direction: column;
+        }
+    }
+
+
+}
+
+ul.row {
+    list-style: none;
+}
+
+.center {
+    text-align: center;
+}
+
+.text-wrapper>*:not(:last-child) {
+    margin-bottom: 12px;
+}
+
+.image-wrapper.clipped {
+    clip-path: polygon(46% 0, 100% 0%, 100% 100%, 0% 100%);
+    display: flex;
+    justify-content: flex-end;
+
+    * {
+        min-width: 100%;
+        max-width: 100%;
+        min-height: 100%;
+        object-fit: cover;
+    }
+}
+
+/* transitions */
+.layout-enter-active,
+.layout-leave-active {
+    transition: all 0.4s;
+}
+
+.layout-enter-from,
+.layout-leave-to {
+    opacity: 0;
+    filter: blur(1rem);
+}
+
+.clip-circle {
+    clip-path: circle(47%);
+}
+
+.btn-arrow {
+    @include btnArrow;
+}
+
+.visually-hidden {
+    display: none;
+    visibility: hidden;
+}
+
+a.btn-fill,
+.btn-fill {
+    background: #000;
+    color: #fff;
+    display: inline-block;
+    justify-content: center;
+    text-align: center;
+    padding: $spacer;
+    letter-spacing: 0px;
+    transition: .3s ease all;
+
+    &:hover {
+        letter-spacing: 0.5px;
+    }
+}

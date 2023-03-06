@@ -1,0 +1,92 @@
+$primary: #49240F;
+$secondary: #efeaff;
+$bright: yellow;
+$highlight: $secondary;
+$dark: rgb(229, 198, 72);
+$containerWidth: 800px;
+$spacer: 15px;
+$collapse-bp: 800px;
+$text-collapse-bp: 1080px;
+
+@mixin btnArrow() {
+    padding: 4px 15px;
+    transition: .5s ease all;
+    display: flex;
+    text-align: center;
+
+    &:after {
+        content: "→";
+        margin-left: 15px;
+        transition: .3s ease all;
+    }
+
+    &:hover {
+        &:after {
+            margin-left: 25px;
+        }
+    }
+}
+
+@mixin btnArrowBack() {
+    flex-direction: row-reverse;
+
+    &:after {
+        margin-left: 0;
+        margin-right: 15px;
+        transform: rotate(180deg);
+    }
+
+    &:hover {
+        &:after {
+            margin-right: 25px;
+        }
+    }
+
+}
+
+@mixin typeSerif($size, $lh) {
+    font-family: 'Baskervville', 'Times New Roman', Times, serif;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: $size;
+    line-height: $lh;
+    letter-spacing: 0rem;
+}
+
+@mixin typeSansSerif() {
+    letter-spacing: 0;
+    font-family: "neuzeit-grotesk", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+@mixin titleStyle() {
+    @include typeSansSerif();
+    text-transform: uppercase;
+    letter-spacing: 0.3rem;
+    font-weight: 800;
+}
+
+@mixin textDisplayStyle() {
+    @include typeSansSerif();
+    font-size: 3rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+
+@mixin textDisplaySmStyle() {
+    @include typeSansSerif();
+    font-size: 1rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+@mixin btnBorder() {
+    padding: $spacer*0.5;
+    border: 1px solid black;
+    transition: 3s ease all;
+
+    &:hover {
+        border: 1px solid yellow;
+    }
+}

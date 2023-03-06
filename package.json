@@ -1,0 +1,23 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "node-sass": "^8.0.0",
+    "nuxt": "^3.2.2",
+    "nuxt-icon": "^0.3.2",
+    "sass": "^1.58.3"
+  },
+  "dependencies": {
+    "@nuxtjs/sanity": "^1.6.0",
+    "@sanity/image-url": "^1.0.2",
+    "@vimeo/player": "^2.18.0",
+    "gsap": "^3.11.4",
+    "vue-lite-youtube-embed": "^1.2.0"
+  }
+}
