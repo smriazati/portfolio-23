@@ -4,8 +4,8 @@
             <h1 class="text-display-style">Contact</h1>
             <p>Get in touch using this form, or send me an email at sarahriazati@gmail.com.</p>
         </div>
-        <div class="form-wrapper">
-            <div v-if="!showThanks">
+        <div>
+            <div v-if="!showThanks && !showError" class="form-wrapper">
                 <form id="contact" name="contact" method="post" netlify netlify-honeypot="bot-field" data-netlify="true"
                     @submit.prevent="onFormSubmit">
                     <input type="hidden" name="form-name" value="contact">
@@ -18,20 +18,21 @@
                     <button class="btn-fill">Submit</button>
                 </form>
             </div>
-            <div v-else class="confirmation-wrapper">
+            <div v-if="showThanks" class="confirmation-wrapper">
                 <p>Thanks for reaching out! Your message has been submitted.</p>
-                <button class="btn-fill" @click="toggleShowThanks">Send another message</button>
+            </div>
+            <div v-if="showError" class="error-wrapper">
+                <p>Sorry, something has gone wrong. Please try again later, or send an email to sarahriazati@gmail.com.</p>
             </div>
         </div>
     </div>
 </template>
 <script setup>
 const showThanks = ref(false)
-const toggleShowThanks = () => {
-    showThanks.value = !showThanks.value;
-}
+const showError = ref(false)
+
 const onFormSubmit = (e) => {
-    let myForm = document.getElementById("subscribe");
+    let myForm = document.getElementById("contact");
     let formData = new FormData(myForm);
     fetch("/", {
         method: "POST",
@@ -39,7 +40,10 @@ const onFormSubmit = (e) => {
         body: new URLSearchParams(formData).toString(),
     })
         .then(result => showThanks.value = true)
-        .catch((error) => console.log(error));
+        .catch((error) => {
+            console.log(error);
+            showError.value = true
+        });
 }
 </script>
 
@@ -48,9 +52,10 @@ const onFormSubmit = (e) => {
     padding: $spacer*2;
 }
 
-.form-wrapper {
+.form-wrapper,
+.confirmation-wrapper,
+.error-wrapper {
     padding: $spacer*2;
-
 }
 
 .confirmation-wrapper {

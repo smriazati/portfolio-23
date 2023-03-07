@@ -28,6 +28,11 @@ a:visited {
     color: #000;
 }
 
+::selection {
+    color: #fff;
+    background-color: #000;
+}
+
 nav ul {
     list-style: none;
 }
