@@ -5,8 +5,10 @@
                 <div v-if="data.content" class="text-wrapper">
                     <div class="text-wrapper-inner">
                         <p>Hello!</p>
-                        <h1 v-if="data.content.mainText">{{ data.content.mainText }}</h1>
-                        <h2 v-if="data.content.secondaryText">{{ data.content.secondaryText }}</h2>
+                        <h1 class="main-text" v-if="data.content.mainText">{{ data.content.mainText }}</h1>
+                        <div class="secondary-text" v-if="data.content.secondaryText">
+                            <SanityContent :blocks="data.content.secondaryText.rte"></SanityContent>
+                        </div>
                     </div>
                     <div class="button-wrapper btn-arrow">
                         <NuxtLink to="/work">View work</NuxtLink>
@@ -161,16 +163,11 @@ onUnmounted(() => {
         margin-bottom: $spacer;
     }
 
-    h1 {
+    .main-text {
         font-size: 2rem;
         line-height: 2.7rem;
     }
 
-    h2 {
-        margin-top: $spacer*1.5;
-        font-size: 1.5rem;
-        line-height: 2rem;
-    }
 
     .text-wrapper {
         display: flex;
