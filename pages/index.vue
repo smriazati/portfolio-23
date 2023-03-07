@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <div class="image-wrapper">
-                    <div class="clip-circle">
+                    <div>
                         <ProfileImage :height="300" :width="300"></ProfileImage>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
                 </section>
                 <section class="work-cta-wrapper padded-section">
                     <div v-if="data.content" class="image-wrapper">
-                        <div v-if="data.content.featured" class="row">
+                        <div v-if="data.content.featured" class="row no-break">
                             <div v-for="item in data.content.featured" :key="item._id">
                                 <NuxtLink v-if="item.img" :to="`/project/${item.slug.current}`">
                                     <img :src="$urlFor(item.img.url).height(200).fit('max').format('webp').url()"
@@ -132,7 +132,7 @@ onMounted(() => {
         tl.value = gsap
             .timeline()
             .set(bgShifter.value, {
-                backgroundColor: '#efeaff',
+                backgroundColor: '#ffd8bf',
             })
             .to(bgShifter.value, {
                 backgroundColor: '#ebc8eb',
@@ -158,6 +158,10 @@ onUnmounted(() => {
     justify-content: space-between;
     background: #fff;
 
+    @media (max-width: $collapse-bp) {
+        flex-direction: column-reverse;
+    }
+
     p {
         @include titleStyle();
         margin-bottom: $spacer;
@@ -173,6 +177,10 @@ onUnmounted(() => {
         display: flex;
         flex-direction: column;
         padding: $spacer*2;
+
+        @media (max-width: $collapse-bp) {
+            padding: $spacer;
+        }
 
         .text-wrapper-inner {
             max-width: 75ch;
@@ -207,6 +215,10 @@ onUnmounted(() => {
 
 .padded-section {
     padding: 10vh 0;
+
+    @media (max-width: $collapse-bp) {
+        padding: $spacer*2 0;
+    }
 }
 
 .services-wrapper {
@@ -215,6 +227,12 @@ onUnmounted(() => {
     grid-gap: $spacer*3;
     padding-left: $spacer*2;
     padding-right: $spacer*2;
+
+    @media (max-width: $collapse-bp) {
+        display: flex;
+        flex-direction: column;
+        padding: $spacer*4 $spacer;
+    }
 
     ul {
         list-style: none;
@@ -225,6 +243,18 @@ onUnmounted(() => {
             display: flex;
             align-items: center;
             justify-content: space-between;
+
+            @media (max-width: $collapse-bp) {
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+            }
+        }
+
+        .btn-arrow {
+            @media (max-width: $collapse-bp) {
+                padding-left: 0;
+            }
         }
 
         a:hover .btn-arrow::after {
@@ -239,11 +269,40 @@ onUnmounted(() => {
 }
 
 .skills-list-wrapper {
+
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-gap: 45px;
     padding-left: 30px;
     padding-right: 30px;
+    background: rgba(255, 255, 255, 0);
+    transition: .3s ease all;
+
+    @media (max-width: $collapse-bp) {
+        display: flex;
+        flex-direction: column;
+        padding: $spacer*4 $spacer;
+    }
+
+    img {
+        filter: grayscale(1);
+    }
+
+    &:hover {
+        background: rgba(255, 255, 255, 1);
+
+        img {
+            filter: grayscale(0);
+        }
+    }
+
+    @media (max-width: $collapse-bp) {
+        background: rgba(255, 255, 255, 1);
+
+        img {
+            filter: grayscale(0);
+        }
+    }
 
     .list-wrapper {
 
@@ -254,6 +313,13 @@ onUnmounted(() => {
             text-align: center;
             grid-column-gap: $spacer;
 
+            @media (max-width: $collapse-bp) {
+                grid-template-columns: repeat(3, 1fr);
+                grid-row-gap: $spacer*2;
+                grid-column-gap: $spacer*0.5;
+
+            }
+
             .image-wrapper {
                 display: flex;
                 justify-content: center;
@@ -262,6 +328,7 @@ onUnmounted(() => {
         }
 
         .skill-item {
+
             figure {
                 height: 50px;
                 width: 50px;
@@ -274,6 +341,14 @@ onUnmounted(() => {
 
             img {
                 object-fit: contain;
+                // filter: grayscale(1);
+                transition: .2s ease-out all;
+            }
+
+            &:hover {
+                img {
+                    filter: grayscale(0);
+                }
             }
         }
     }
@@ -287,6 +362,12 @@ onUnmounted(() => {
     padding-right: $spacer*2;
     width: 100%;
 
+    @media (max-width: $collapse-bp) {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+
     .text-wrapper .text-display-style {
         font-size: 2rem;
     }
@@ -294,6 +375,10 @@ onUnmounted(() => {
     .button-wrapper {
         display: flex;
         justify-content: center;
+
+        @media (max-width: $collapse-bp) {
+            margin-top: $spacer;
+        }
     }
 }
 
@@ -327,6 +412,6 @@ onUnmounted(() => {
 }
 
 .gsap-bg-shifter {
-    background: #efeaff;
+    background: #ffd8bf;
 }
 </style>

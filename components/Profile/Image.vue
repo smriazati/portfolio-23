@@ -2,7 +2,7 @@
     <div>
         <figure v-if="data">
             <img :src="$urlFor(data.profileImg.url).width(width).height(height).fit('crop')
-                .url()" :alt="data.profileImg?.altText">
+                .url()" :alt="data.profileImg?.altText" class="clip-circle">
         </figure>
     </div>
 </template>
@@ -18,3 +18,15 @@ const { data } = useSanityQuery(query)
 const { $urlFor } = useNuxtApp()
 
 </script>
+<style lang="scss" scoped>
+@media (max-width: $collapse-bp) {
+    figure {
+        text-align: right;
+
+        img {
+            height: 250px;
+            width: 250px;
+        }
+    }
+}
+</style>

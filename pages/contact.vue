@@ -48,14 +48,15 @@ const onFormSubmit = (e) => {
 </script>
 
 <style lang="scss" scoped>
-.text-wrapper {
-    padding: $spacer*2;
-}
-
 .form-wrapper,
 .confirmation-wrapper,
-.error-wrapper {
+.error-wrapper,
+.text-wrapper {
     padding: $spacer*2;
+
+    @media (max-width: $collapse-bp) {
+        padding: $spacer;
+    }
 }
 
 .confirmation-wrapper {

@@ -14,19 +14,25 @@
         <ul class="row no-break">
             <li>
                 <a href="https://instagram.com/sriazati" target="_blank">
-                    <Icon name="uil:instagram" />
+                    <Icon name="bi:instagram" />
                     <span class="visually-hidden">Instagram</span>
                 </a>
             </li>
             <li>
                 <a href="https://github.com/smriazati" target="_blank">
-                    <Icon name="uil:github" />
+                    <Icon name="bi:github" />
                     <span class="visually-hidden">Github</span>
                 </a>
             </li>
             <li>
+                <a href="https://www.vimeo.com/sriazati/" target="_blank">
+                    <Icon name="bi:vimeo" />
+                    <span class="visually-hidden">Vimeo</span>
+                </a>
+            </li>
+            <li>
                 <a href="https://www.linkedin.com/in/sarah-riazati-37752513/" target="_blank">
-                    <Icon name="uil:linkedin" />
+                    <Icon name="bi:linkedin" />
                     <span class="visually-hidden">Linkedin</span>
                 </a>
             </li>
@@ -35,20 +41,30 @@
 </template>
 <style lang="scss" scoped>
 .site-footer {
-    background: #000;
+    background: #fff;
     transition: .3s ease all;
     padding: $spacer*2;
+
     display: flex;
     justify-content: space-between;
 
+    @media (max-width: $collapse-bp) {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: $spacer*2;
+        margin-bottom: $spacer;
+        padding: $spacer;
+
+        >*:not(:last-child) {
+            margin-bottom: $spacer*2;
+        }
+    }
+
 
     a {
-        color: #fff;
+        color: #000;
         transition: .3s ease all;
-
-        &:hover {
-            color: $highlight;
-        }
     }
 
     ul {
@@ -63,6 +79,11 @@
                 svg {
                     transition: .3s ease all;
                     font-size: 2rem;
+
+                    @media (max-width: $collapse-bp) {
+                        font-size: 1.5rem;
+                    }
+
                 }
 
                 &:hover {
@@ -74,9 +95,9 @@
                 }
             }
 
-
             &:not(:last-child) {
                 margin-right: $spacer;
+
             }
         }
     }

@@ -43,6 +43,10 @@ const route = useRoute();
     justify-content: space-between;
     padding: $spacer*2;
 
+    @media (max-width: $collapse-bp) {
+        padding: $spacer;
+    }
+
     li:not(:last-child) {
         margin-right: $spacer;
     }

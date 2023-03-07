@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="card-grid-wrapper">
         <ul class="card-grid">
             <li v-for="item in results" :key="item._id" class="card-grid-item">
                 <div class="card-grid-item-wrapper">
@@ -61,13 +61,28 @@ ul {
     list-style: none;
 }
 
+
+.card-grid-wrapper {
+    @media (max-width: $collapse-bp) {
+        padding: $spacer;
+    }
+}
+
 .card-grid {
     display: grid;
 
     grid-template-columns: repeat(3, 33.33%);
 
+    @media (max-width: $collapse-bp) {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: $spacer*2 $spacer;
+    }
+
     >* {
-        padding: $spacer*2;
+        @media (min-width: $collapse-bp) {
+            padding: $spacer*2;
+        }
     }
 
 }
@@ -108,14 +123,26 @@ ul {
 
     .title-wrapper {
         text-align: left;
+
+        .project-title {
+            // padding-right: $spacer;
+        }
     }
 
     .category-wrapper ul {
-        li+li {
-            &:before {
-                content: ",";
-                margin-right: 2px;
+        @media (min-width: $collapse-bp) {
+            li+li {
+                &:before {
+                    content: ",";
+                    margin-right: 2px;
+                }
             }
+        }
+
+        @media (max-width: $collapse-bp) {
+            flex-direction: column;
+            justify-content: flex-end;
+            text-align: right;
         }
     }
 

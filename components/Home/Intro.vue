@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="text-wrapper">
-            <p>Hello!</p>
+            <p>👋 Hello!</p>
             <p>{{ data.mainText }}</p>
         </div>
         <div class="image-wrapper">

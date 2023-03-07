@@ -38,6 +38,9 @@
                 <WorkCardGrid :data="results"></WorkCardGrid>
             </div>
         </div>
+        <div v-else>
+            <LoadingAnimation></LoadingAnimation>
+        </div>
     </div>
 </template>
 <script setup>
@@ -237,7 +240,13 @@ const results = computed(() => {
 header,
 .filters-section {
     padding: $spacer $spacer*2;
+
+    @media (max-width: $collapse-bp) {
+        padding: $spacer;
+    }
 }
+
+
 
 header {
     padding-top: $spacer*2;
@@ -250,6 +259,10 @@ header {
         flex-direction: row;
         align-items: flex-start;
 
+        @media (max-width: $collapse-bp) {
+            flex-direction: column;
+        }
+
         p {
             margin-right: $spacer;
         }
@@ -261,13 +274,17 @@ header {
         li {
             margin: 0 $spacer * 0.3 $spacer * 0.3 $spacer * 0.3;
 
+            @media (max-width: $collapse-bp) {
+                margin: $spacer * 0.5 $spacer $spacer * 0.3 0;
+            }
+
             &.muted {
                 opacity: 0.5;
             }
 
-            &:not(:last-child) {
-                margin-right: $spacer*0.5;
-            }
+            // &:not(:last-child) {
+            //     margin-right: $spacer*0.5;
+            // }
 
             &:hover,
             &.active {

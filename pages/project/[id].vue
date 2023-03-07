@@ -84,6 +84,11 @@ const serializers = {
 
     >section {
         padding: $spacer*4 $spacer*2 $spacer*8 $spacer*2;
+
+        @media (max-width: $collapse-bp) {
+            padding-left: $spacer;
+            padding-right: $spacer;
+        }
     }
 }
 
@@ -107,12 +112,19 @@ const serializers = {
     grid-template-columns: repeat(2, 1fr);
     grid-gap: $spacer*2;
 
+    @media (max-width: $collapse-bp) {
+        display: flex;
+        flex-direction: column;
+    }
+
     .title-wrapper {
         text-align: left;
     }
 
     .tagline-wrapper {
-        align-self: center;
+        @media (min-width: $collapse-bp) {
+            align-self: center;
+        }
     }
 
     .rte-wrapper {
