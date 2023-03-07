@@ -25,8 +25,17 @@ useHead({
       rel: 'stylesheet',
       href: 'https://use.typekit.net/rpq4aft.css'
     }
-  ]
+  ],
+  titleTemplate: (titleChunk) => {
+    return titleChunk ? `${titleChunk} - Sarah Riazati` : 'Sarah Riazati';
+  },
+  meta: [
+    {
+      name: 'description', content: "I'm Sarah Riazati, a freelance video producer and web developer with a passion for creative storytelling and strategic thinking."
+    }
+  ],
 })
+
 </script>
 <style lang="scss">
 .page-enter-active,

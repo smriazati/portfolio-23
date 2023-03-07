@@ -122,6 +122,9 @@ definePageMeta({
     layout: "home"
 });
 
+useHead({
+    title: 'Home',
+})
 const bgShifter = ref()
 const tl = ref();
 const ctx = ref();

@@ -66,6 +66,9 @@ const { data } = useSanityQuery(query)
 const router = useRouter()
 const route = useRoute()
 
+useHead({
+    title: 'Work',
+})
 const activeFilterRole = computed(() => route.query.role ? [route.query.role][0] : [])
 const activeFilterCategory = computed(() => route.query.category ? [route.query.category][0] : [])
 

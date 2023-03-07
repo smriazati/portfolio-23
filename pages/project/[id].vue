@@ -69,6 +69,17 @@ const query = groq`*[_type == "project" && slug.current == "${route.params.id}"]
 }`
 const { data } = useSanityQuery(query)
 
+console.log()
+
+useHead({
+    title: data.value?.name ? data.value?.name : '',
+    meta: [
+        {
+            name: 'description',
+            content: data.overview?.rte[0].children[0].text ? data.overview?.rte[0].children[0].text : ''
+        }
+    ],
+})
 // const { $urlFor } = useNuxtApp()
 const serializers = {
     marks: {

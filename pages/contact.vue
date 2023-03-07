@@ -45,6 +45,9 @@ const onFormSubmit = (e) => {
             showError.value = true
         });
 }
+useHead({
+    title: 'Contact',
+})
 </script>
 
 <style lang="scss" scoped>

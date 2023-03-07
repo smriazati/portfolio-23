@@ -4,7 +4,7 @@ export default defineNuxtConfig({
     build: {
       transpile: ['gsap'],
     },
-    plugins: ['./plugins/sanityImage'],
+    // plugins: ['./plugins/sanityImage'],
     modules: ['@nuxtjs/sanity', 'nuxt-icon'],
     app: {
       layoutTransition: { name: 'page', mode: 'out-in' },
