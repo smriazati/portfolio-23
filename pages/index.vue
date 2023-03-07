@@ -19,7 +19,7 @@
                 </div>
                 <div class="image-wrapper">
                     <div>
-                        <ProfileImage :height="300" :width="300"></ProfileImage>
+                        <ProfileImage :height="500" :width="500"></ProfileImage>
                     </div>
                 </div>
             </div>
