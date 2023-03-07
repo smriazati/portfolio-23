@@ -1,48 +1,9 @@
 <template>
     <div>
+        <HomeTitleBanner></HomeTitleBanner>
         <div v-if="data">
-            <div class="row no-break title-row padded-section">
-                <div v-if="data.content" class="text-wrapper">
-                    <div class="text-wrapper-inner">
-                        <p>Hello!</p>
-                        <h1 class="main-text" v-if="data.content.mainText">{{ data.content.mainText }}</h1>
-                        <div class="secondary-text" v-if="data.content.secondaryText">
-                            <SanityContent :blocks="data.content.secondaryText.rte"></SanityContent>
-                        </div>
-                    </div>
-                    <div class="button-wrapper btn-arrow">
-                        <NuxtLink to="/work">View work</NuxtLink>
-                    </div>
-                    <div class="button-wrapper btn-arrow">
-                        <NuxtLink to="/contact">Get in touch</NuxtLink>
-                    </div>
-                </div>
-                <div class="image-wrapper">
-                    <div>
-                        <ProfileImage :height="500" :width="500"></ProfileImage>
-                    </div>
-                </div>
-            </div>
             <div class="gsap-bg-shifter" ref="bgShifter">
-                <section class="services-wrapper padded-section">
-                    <div class="text-wrapper">
-                        <h2 class="text-display-sm-style">Services</h2>
-                    </div>
-                    <div class="list-wrapper">
-                        <ul v-if="data.content">
-                            <li v-for="item in data.content.specialties" :key="item._key" class="service-item">
-                                <NuxtLink :to="item.link">
-                                    <div class="text-wrapper">
-                                        <p class="text-display-style">{{ item?.name }}</p>
-                                    </div>
-                                    <div class="button-wrapper btn-arrow">
-                                        <NuxtLink :to="item.link">View work</NuxtLink>
-                                    </div>
-                                </NuxtLink>
-                            </li>
-                        </ul>
-                    </div>
-                </section>
+                <HomeServices></HomeServices>
                 <section class="skills-list-wrapper padded-section">
                     <div class="text-wrapper">
                         <h2 class="text-display-sm-style">Skills &amp; Tools</h2>
@@ -157,49 +118,6 @@ onUnmounted(() => {
 </script>
 
 <style lang="scss" scoped>
-.title-row {
-    justify-content: space-between;
-    background: #fff;
-
-    @media (max-width: $collapse-bp) {
-        flex-direction: column-reverse;
-    }
-
-    p {
-        @include titleStyle();
-        margin-bottom: $spacer;
-    }
-
-    .main-text {
-        font-size: 2rem;
-        line-height: 2.7rem;
-    }
-
-
-    .text-wrapper {
-        display: flex;
-        flex-direction: column;
-        padding: $spacer*2;
-
-        @media (max-width: $collapse-bp) {
-            padding: $spacer;
-        }
-
-        .text-wrapper-inner {
-            max-width: 75ch;
-        }
-
-        .button-wrapper {
-            padding-left: 0;
-            margin-top: $spacer*2;
-        }
-
-        .button-wrapper+.button-wrapper {
-            margin-top: 0;
-        }
-    }
-}
-
 .section-container {
     max-width: 1100px;
     margin-left: auto;
@@ -217,58 +135,13 @@ onUnmounted(() => {
 }
 
 .padded-section {
-    padding: 10vh 0;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
 
     @media (max-width: $collapse-bp) {
-        padding: $spacer*2 0;
+        padding-top: $spacer*2;
+        padding-bottom: $spacer*2;
     }
-}
-
-.services-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    grid-gap: $spacer*3;
-    padding-left: $spacer*2;
-    padding-right: $spacer*2;
-
-    @media (max-width: $collapse-bp) {
-        display: flex;
-        flex-direction: column;
-        padding: $spacer*4 $spacer;
-    }
-
-    ul {
-        list-style: none;
-    }
-
-    .service-item {
-        a {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            @media (max-width: $collapse-bp) {
-                flex-direction: column;
-                justify-content: flex-start;
-                align-items: flex-start;
-            }
-        }
-
-        .btn-arrow {
-            @media (max-width: $collapse-bp) {
-                padding-left: 0;
-            }
-        }
-
-        a:hover .btn-arrow::after {
-            margin-left: $spacer*2;
-        }
-
-        &:not(:last-child) {
-            margin-bottom: $spacer*2;
-        }
-    }
-
 }
 
 .skills-list-wrapper {
@@ -418,3 +291,4 @@ onUnmounted(() => {
     background: #ffd8bf;
 }
 </style>
+

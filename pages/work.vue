@@ -309,7 +309,12 @@ header {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    padding: $spacer;
+    padding: $spacer*2;
+
+    @media(max-width: $collapse-bp) {
+        padding: $spacer;
+    }
+
     align-items: flex-start;
 
     .button-wrapper {

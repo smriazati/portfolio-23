@@ -25,17 +25,17 @@ figure {
 
     img {
         object-fit: cover;
+        width: 100%;
+        height: 100%;
     }
 }
 
 @media (max-width: $collapse-bp) {
     figure {
         text-align: right;
-
-        img {
-            height: 250px;
-            width: 250px;
-        }
+        height: 150px;
+        width: 150px;
+        margin-bottom: $spacer;
     }
 }
 </style>

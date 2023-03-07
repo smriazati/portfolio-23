@@ -81,7 +81,7 @@ form {
 
     input,
     textarea {
-        background: #efefef;
+        background: #fff;
         border: 0;
         margin-bottom: $spacer;
         outline: 0;
@@ -92,7 +92,7 @@ form {
 
         &:focus,
         &:hover {
-            background: #efefff;
+            background: $highlight;
         }
     }
 

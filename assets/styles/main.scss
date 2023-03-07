@@ -66,12 +66,18 @@ a {
     font-weight: 400;
 }
 
+
+
 .text-display-style {
     @include textDisplayStyle();
 }
 
 .text-display-sm-style {
     @include textDisplaySmStyle();
+}
+
+.no-text-transform {
+    text-transform: none;
 }
 
 .rte-wrapper p+p,
@@ -177,4 +183,15 @@ a.btn-fill,
     margin-top: $spacer*1.5;
     font-size: 1.5rem;
     line-height: 2rem;
+}
+
+.contact.layout-default,
+.contact.layout-default .site-footer {
+    background: rgb(255, 216, 191);
+}
+
+.title-row p {
+    font-size: 1.4rem;
+    line-height: 2.1rem;
+    margin-top: $spacer;
 }
