@@ -40,14 +40,15 @@ const banner = ref()
 const tl = ref();
 const ctx = ref();
 
-onMounted(() => {
-
+const initAnimation = () => {
     ctx.value = gsap.context((self) => {
 
         const image = self.selector('.image-wrapper')
         const textEls = self.selector('.text-wrapper-inner > *')
         const buttonEls = self.selector('.button-wrapper-container');
         const batchItems = [...textEls, buttonEls]
+        // console.log('batchItems', batchItems)
+
         tl.value = gsap
             .timeline()
             .set(batchItems, {
@@ -70,10 +71,23 @@ onMounted(() => {
                 ease: "power2.easeOut",
             }, "<")
     }, banner.value);
+}
+
+const timer = ref();
+
+onMounted(() => {
+
+    timer.value = setTimeout(() => {
+        initAnimation();
+    }, 100);
 });
+
+
 
 onUnmounted(() => {
     ctx.value.revert();
+    timer.value = null
+
 });
 </script>
 
