@@ -82,8 +82,8 @@ categories[]->{name}, types[]->{name}
 `
 const query = groq`{ 
     "projects": *[_type == "project"]|order(orderRank){ ${projectQuery} }, 
-    "projectTypes": *[_type == "projectType"]|order(orderRank), 
-    "categories": *[_type == "category"] 
+    "projectTypes": *[_type == "projectType"]|order(name asc), 
+    "categories": *[_type == "category"]|order(name asc) 
 }`
 const { data } = useSanityQuery(query)
 
