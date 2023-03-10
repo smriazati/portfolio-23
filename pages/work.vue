@@ -23,7 +23,31 @@
                     <li @click="clearFilterRole" class="muted">Clear All</li>
                 </ul>
             </div>
-            <!-- <p class="results-count" v-if="results">Showing {{ results.length }} projects</p> -->
+        </div>
+        <div v-if="activeFilterCategory.length > 0 || activeFilterRole.length > 0" class=" results-section row">
+            <p>Showing results for:</p>
+            <div v-if="activeFilterCategory.length > 0" class="list-wrapper row no-break">
+                <ul v-if="typeof (activeFilterCategory) == 'string'" class="row row-wrap no-break">
+                    <li>{{ activeFilterCategory }}</li>
+                </ul>
+                <ul v-else class="row row-wrap no-break">
+                    <li v-for="(item, index) in activeFilterCategory" :key="index">
+                        {{ item }}
+                    </li>
+                </ul>
+            </div>
+            <div v-if="activeFilterRole.length > 0" class="list-wrapper row no-break">
+                <ul v-if="typeof (activeFilterRole) == 'string'" class="row row-wrap no-break">
+                    <li>{{ activeFilterRole }}</li>
+                </ul>
+                <ul v-else class="row row-wrap no-break">
+                    <li v-for="(item, index) in activeFilterRole" :key="index">
+                        {{ item }}
+                    </li>
+                </ul>
+            </div>
+
+
         </div>
         <div v-if="results" class="results-container">
             <div v-if="results.length === 0" class="no-results-wrapper">
@@ -241,15 +265,14 @@ const results = computed(() => {
 }
 
 header,
-.filters-section {
-    padding: $spacer $spacer*2;
+.filters-section,
+.results-section {
+    padding: 0 $spacer*2 $spacer $spacer*2;
 
     @media (max-width: $collapse-bp) {
         padding: $spacer;
     }
 }
-
-
 
 header {
     padding-top: $spacer*2;
@@ -301,9 +324,29 @@ header {
     }
 }
 
-.results-container {
-    margin-top: $spacer*2;
+
+.results-section {
+    font-style: italic;
+
+    p,
+    ul li:not(:last-child) {
+        margin-right: 4px;
+    }
+
+    ul li:not(:last-child) {
+        &::after {
+            content: ","
+        }
+    }
+
+    .list-wrapper+.list-wrapper {
+        &::before {
+            margin-right: 4px;
+            content: ","
+        }
+    }
 }
+
 
 .no-results-wrapper {
     display: flex;
